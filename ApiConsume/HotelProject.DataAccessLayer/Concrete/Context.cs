@@ -1,15 +1,12 @@
 ﻿using HotelProject.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelProject.DataAccessLayer.Concrete
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
+        // Burada ki "int" değeri benim key değerim. Bu key değerini tanımlama sebebimiz: normal de Identity kütüphanesindeki idler string formatında geliyor. Biz bunun otomatik artın bir int değer olmasını istediğimiz için kullandık 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"server=(localdb)\MSSQLLocalDB; initial catalog=ApiDb; integrated security=true;");
