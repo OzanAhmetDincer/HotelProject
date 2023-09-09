@@ -1,0 +1,48 @@
+﻿using HotelProject.BusinessLayer.Abstract;
+using HotelProject.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
+
+namespace HotelProject.WebApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AboutController : ControllerBase
+    {
+        private readonly IAboutService _aboutService;
+        public AboutController(IAboutService aboutService)
+        {
+            _aboutService = aboutService;
+        }
+        [HttpGet]// Verileri getirecek olan kısım. O yüzden bu atribute'yi ekleriz
+        public IActionResult AboutList()
+        {
+            var values = _aboutService.TGetList();
+            return Ok(values);
+        }
+        [HttpPost]// Yeni veri ekleme
+        public IActionResult AddAbout(About about)
+        {
+            _aboutService.TInsert(about);
+            return Ok();
+        }
+        [HttpDelete]// Veri silme
+        public IActionResult DeleteAbout(int id)
+        {
+            var values = _aboutService.TGetByID(id);
+            _aboutService.TDelete(values);
+            return Ok();
+        }
+        [HttpPut]// Güncelleme
+        public IActionResult UpdateAbout(About about)
+        {
+            _aboutService.TUpdate(about);
+            return Ok();
+        }
+        [HttpGet("{id}")]// id parametresine göre getirme işlemi yapılacak
+        public IActionResult GetAbout(int id)
+        {
+            var values = _aboutService.TGetByID(id);
+            return Ok(values);
+        }
+    }
+}
