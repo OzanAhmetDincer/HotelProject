@@ -1,5 +1,4 @@
-﻿using HotelProject.WebUI.Dtos.RoomDto;
-using HotelProject.WebUI.Dtos.TestimonialDto;
+﻿using HotelProject.WebUI.Dtos.TestimonialDto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
