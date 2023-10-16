@@ -25,7 +25,7 @@ namespace HotelProject.WebApi.Controllers
             _roomService.TInsert(room);
             return Ok();
         }
-        [HttpDelete]// Veri silme
+        [HttpDelete("{id}")]// Veri silme
         public IActionResult DeleteRoom(int id)
         {
             var values = _roomService.TGetByID(id);
