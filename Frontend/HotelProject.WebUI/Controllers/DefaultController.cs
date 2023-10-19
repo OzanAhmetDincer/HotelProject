@@ -32,7 +32,7 @@ namespace HotelProject.WebUI.Controllers
 
             // "StringContent" içeriğin dönüşümü için kullanacağımız bir sınıf. Web api sunucusuna bir nesne göndermek istediğimde, HTTP içeriğine format eklemek için StringContent'i kullanırım, örneğin Müşteri nesnesini sunucuya json olarak eklemek için. StringContent sınıfı, http sunucu/istemci iletişimine uygun biçimlendirilmiş bir metin oluşturur. Bir istemci isteğinden sonra sunucu HttpResponseMessageve ile yanıt verecektir  bu yanıtın bir içeriğe ihtiyacı olacaktır bunu da StringContent sınıfla oluşturulabiliriz  
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");// jsonData ile içeriğimizi veririz, Encoding.UTF8 ile de Türkçe karakter destekleyecek şekilde getirdik mediaType ise application/json olacak. Veri, verinin kodlanmış hali ve türü
-            await client.PostAsync("http://localhost:12091/api/Subscribe", stringContent);// Ekleme yapabilmek için "PostAsync" metodunu kullanırız
+            await client.PostAsync("http://localhost:5123/api/Subscribe", stringContent);// Ekleme yapabilmek için "PostAsync" metodunu kullanırız
             return RedirectToAction("Index" , "Default");
         }
     }

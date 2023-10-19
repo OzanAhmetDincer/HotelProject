@@ -17,7 +17,7 @@ namespace HotelProject.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();// Bir tane istemci oluşturduk
-            var responseMessage = await client.GetAsync("http://localhost:12091/api/Testimonial");// Veri listelemek istediğimiz için "GetAsync" metodunu kullandık. Bu metot bizden bir url ister yani nereye istekte bulunacağımızı belirtiriz
+            var responseMessage = await client.GetAsync("http://localhost:5123/api/Testimonial");// Veri listelemek istediğimiz için "GetAsync" metodunu kullandık. Bu metot bizden bir url ister yani nereye istekte bulunacağımızı belirtiriz
             if (responseMessage.IsSuccessStatusCode)// Başarılı bir durum kodu dönerse yani 200-299 arasında ki başarılı dönüşlerde çalışacak
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();// "responseMessage" dan gelen content'in içeriği "ReadAsStringAsync" olarak oku. Gelen veriyi "jsonData" değişkeni içerisine atadık
@@ -41,7 +41,7 @@ namespace HotelProject.WebUI.Controllers
 
             // "StringContent" içeriğin dönüşümü için kullanacağımız bir sınıf. Web api sunucusuna bir nesne göndermek istediğimde, HTTP içeriğine format eklemek için StringContent'i kullanırım, örneğin Müşteri nesnesini sunucuya json olarak eklemek için. StringContent sınıfı, http sunucu/istemci iletişimine uygun biçimlendirilmiş bir metin oluşturur. Bir istemci isteğinden sonra sunucu HttpResponseMessageve ile yanıt verecektir  bu yanıtın bir içeriğe ihtiyacı olacaktır bunu da StringContent sınıfla oluşturulabiliriz  
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");// jsonData ile içeriğimizi veririz, Encoding.UTF8 ile de Türkçe karakter destekleyecek şekilde getirdik mediaType ise application/json olacak. Veri, verinin kodlanmış hali ve türü
-            var responseMessage = await client.PostAsync("http://localhost:12091/api/Testimonial", stringContent);// Ekleme yapabilmek için "PostAsync" metodunu kullanırız
+            var responseMessage = await client.PostAsync("http://localhost:5123/api/Testimonial", stringContent);// Ekleme yapabilmek için "PostAsync" metodunu kullanırız
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -51,7 +51,7 @@ namespace HotelProject.WebUI.Controllers
         public async Task<IActionResult> DeleteTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"http://localhost:12091/api/Testimonial/{id}");
+            var responseMessage = await client.DeleteAsync($"http://localhost:5123/api/Testimonial/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -63,7 +63,7 @@ namespace HotelProject.WebUI.Controllers
         public async Task<IActionResult> UpdateTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:12091/api/Testimonial/{id}");
+            var responseMessage = await client.GetAsync($"http://localhost:5123/api/Testimonial/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -79,7 +79,7 @@ namespace HotelProject.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(model);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("http://localhost:12091/api/Testimonial/", stringContent);
+            var responseMessage = await client.PutAsync("http://localhost:5123/api/Testimonial/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

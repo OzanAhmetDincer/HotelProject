@@ -8,7 +8,7 @@
 <form method="post">
     <label>Misafir Adı</label>
     <input type="text" asp-for="Name" class="form-control" />
-    <span asp-validation-for="Name" class="text-danger"></span>
+    <span asp-validation-for="Name" class="text-danger"></span> <!-- FluentValidation ile yaptığımız işlemlerin sonuçlarını bunu yazarak gösteririz-->
     <br />
     <label>Misafir Soyadı</label>
     <input type="text" asp-for="Surname" class="form-control" />
