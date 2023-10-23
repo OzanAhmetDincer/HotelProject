@@ -2,8 +2,8 @@
 
 namespace HotelProject.DataAccessLayer.Abstract
 {
-    public interface IContactDal : IGenericDal<Contact>
+    public interface ISendMessageDal : IGenericDal<SendMessage>
     {
-        public int GetContactCount();
+        public int GetSendMessageCount();
     }
 }
